@@ -6,6 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Scanner;
+
 @SpringBootApplication
 public class RockPaperScissorsGame implements CommandLineRunner {
     private static Logger LOG = LoggerFactory.getLogger(RockPaperScissorsGame.class);
@@ -16,6 +18,9 @@ public class RockPaperScissorsGame implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Hello world!");
+        System.out.println("Welcome to 'Rock Paper Scissors' game!");
+        System.out.print("Please enter you username or press <Enter> to quit:");
+        //Scanner sc = new Scanner(System.in);
+        //String username = sc.nextLine();
     }
 }
