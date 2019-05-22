@@ -1,10 +1,6 @@
 package com.github.irbis.games.rps;
 
-/**
- * Hello world!
- *
- */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
