@@ -12,16 +12,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
-import static java.util.Collections.synchronizedList;
+import static java.util.Collections.synchronizedMap;
 
 @Repository
-public class InMemoryStatisticRepository {
+public class InMemoryStatisticRepository implements StatisticRepository {
     private static Logger LOG = LoggerFactory.getLogger(InMemoryStatisticRepository.class);
 
-    private final List<Statistic> statistics = synchronizedList(new ArrayList<>());
+    private final Map<String, Statistic> statistics = synchronizedMap(new HashMap<>());
 
     @PostConstruct
     private void init() {
@@ -35,7 +36,8 @@ public class InMemoryStatisticRepository {
             Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvReader);
 
             for (CSVRecord statisticRecord : records) {
-                statistics.add(createStatistic(statisticRecord));
+                Statistic statistic = createStatistic(statisticRecord);
+                statistics.put(statistic.getUsername(), statistic);
             }
         } catch (NullPointerException | IOException e) {
             LOG.info("Unable to read statistic! Continue with empty table!");
@@ -50,4 +52,14 @@ public class InMemoryStatisticRepository {
                 .build();
     }
 
+    @Override
+    public Optional<Statistic> find(String username) {
+        Statistic statistic = statistics.get(username);
+        return Optional.ofNullable(statistic);
+    }
+
+    @Override
+    public void saveOrUpdate(Statistic statistic) {
+        statistics.put(statistic.getUsername(), statistic);
+    }
 }
