@@ -1,15 +1,12 @@
 package com.github.irbis.games.rps.domain;
 
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
 @Builder
+@Data
 public class Statistic {
     private String username;
     private int successCount;
     private int failCount;
-
 }
