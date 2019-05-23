@@ -14,7 +14,13 @@ public final class MessageResolver {
     private static final Map<String, String> MESSAGES_MAP =
             Stream.of(new String[][] {
                     { "welcome", "Welcome to 'Rock Paper Scissors' game!" },
-                    { "login", "Please enter your username or press <Enter> to quit:" }
+                    { "login", "Please enter your username or press <Enter> to quit:" },
+                    { "select-action", "%s, please select an action:\n" },
+                    { "start-new-game", "\t1 or r - start new game" },
+                    { "display-statistic", "\t2 or j - display gaming statistic" },
+                    { "exit-action-state", "\t0 or q - exit" },
+                    { "", "" },
+                    { "exit", "Thanks for the game! Please, come back!" }
             }).collect(Collectors.collectingAndThen(
                     toMap(data -> data[0], data -> data[1]),
                     Collections::<String, String> unmodifiableMap));
