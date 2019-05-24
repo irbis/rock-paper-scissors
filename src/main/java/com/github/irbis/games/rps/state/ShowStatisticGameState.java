@@ -23,7 +23,8 @@ public class ShowStatisticGameState extends GameState {
     @Override
     public void show() {
         printlnMessage("gaming-statistic");
-        printlnMessage("gaming-statistic-title");
+        printlnMessage("gaming-statistic-line",
+                "username", "score");
 
         statisticService.getSortedAggregatedStatistic()
                 .forEach(this::printStatisticLine);
@@ -32,7 +33,8 @@ public class ShowStatisticGameState extends GameState {
     }
 
     private void printStatisticLine(AggregatedStatistic s) {
-        println("| " + s.getUsername() + "\t\t| " + s.getScore() + "\t|");
+        printlnMessage("gaming-statistic-line",
+                s.getUsername(), Integer.toString(s.getScore()));
     }
 
     @Override

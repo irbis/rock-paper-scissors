@@ -20,7 +20,7 @@ public final class MessageResolver {
                     { "display-statistic", "\t2 or j - display gaming statistic" },
                     { "exit-action-state", "\t0 or q - exit" },
                     { "gaming-statistic", "Gaming statistic" },
-                    { "gaming-statistic-title", "\n| username \t\t| score \t|" },
+                    { "gaming-statistic-line", "\n| %s \t\t| %s \t|" },
                     { "enter-to-return", "Press Enter to return" },
                     { "", "" },
                     { "exit", "Thanks for the game! Please, come back!" }

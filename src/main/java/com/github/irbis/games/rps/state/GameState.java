@@ -21,10 +21,6 @@ public abstract class GameState {
         System.out.print(messageResolver.getMessage(key));
     }
 
-    protected void println(String s) {
-        System.out.println(s);
-    }
-
     public abstract void show();
     public abstract GameState act(String input);
     public abstract boolean isContinue();
