@@ -44,6 +44,6 @@ public class ShowStatisticGameState extends GameState {
 
     @Override
     public boolean isContinue() {
-        return false;
+        return true;
     }
 }
