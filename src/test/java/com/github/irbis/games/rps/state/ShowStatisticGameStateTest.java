@@ -35,8 +35,8 @@ public class ShowStatisticGameStateTest {
     public void setUp() {
         showStatisticGameState = new ShowStatisticGameState(
                 messageResolver,
-                statisticService,
-                startGameState);
+                startGameState,
+                statisticService);
     }
 
     @Test

@@ -26,13 +26,13 @@ public class StatisticService {
                 .sorted(new Comparator<AggregatedStatistic>() {
             @Override
             public int compare(AggregatedStatistic o1, AggregatedStatistic o2) {
-                return Integer.compare(o1.getScore(), o2.getScore());
+                return Integer.compare(o2.getScore(), o1.getScore());
             }
         }).collect(toList());
     }
 
     private AggregatedStatistic createAggregatedStatistic(Statistic s) {
-        int score = s.getSuccessCount() / (s.getSuccessCount() + s.getFailCount());
+        int score = 100 * s.getSuccessCount() / (s.getSuccessCount() + s.getFailCount());
 
         return new AggregatedStatistic(s.getUsername(), score);
     }

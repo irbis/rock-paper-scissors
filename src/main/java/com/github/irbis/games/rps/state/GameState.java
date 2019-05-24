@@ -3,7 +3,7 @@ package com.github.irbis.games.rps.state;
 import com.github.irbis.games.rps.service.MessageResolver;
 
 public abstract class GameState {
-    private final MessageResolver messageResolver;
+    protected final MessageResolver messageResolver;
 
     public GameState(MessageResolver messageResolver) {
         this.messageResolver = messageResolver;

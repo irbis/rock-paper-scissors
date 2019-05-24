@@ -20,8 +20,10 @@ public final class MessageResolver {
                     { "display-statistic", "\t2 or j - display gaming statistic" },
                     { "exit-action-state", "\t0 or q - exit" },
                     { "gaming-statistic", "Gaming statistic" },
-                    { "gaming-statistic-line", "\n| %s \t\t| %s \t|" },
-                    { "enter-to-return", "Press Enter to return" },
+                    { "gaming-statistic-title", "\n username: score" },
+                    { "gaming-statistic-line", "\n %s: %s " },
+                    { "enter-to-continue", "\n\nPress Enter to continue" },
+                    { "incorrect-command", "Incorrect command! Press Enter to continue!" },
                     { "", "" },
                     { "exit", "Thanks for the game! Please, come back!" }
             }).collect(Collectors.collectingAndThen(
