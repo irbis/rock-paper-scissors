@@ -15,14 +15,17 @@ public class StartGameState extends GameState {
     }
 
     private final ExitGameState exitGameState;
+    private final ShowStatisticGameState showStatisticGameState;
     private final SessionService sessionService;
 
     public StartGameState(
             MessageResolver messageResolver,
             ExitGameState exitGameState,
+            ShowStatisticGameState showStatisticGameState,
             SessionService sessionService) {
         super(messageResolver);
         this.exitGameState = exitGameState;
+        this.showStatisticGameState = showStatisticGameState;
         this.sessionService = sessionService;
     }
 
@@ -40,7 +43,7 @@ public class StartGameState extends GameState {
             case START:
                 return null; // TODO
             case DISPLAY_STATISTIC:
-                return null; // TODO
+                return null; // TODO showStatisticGameState;
             case EXIT:
                 return exitGameState;
         }

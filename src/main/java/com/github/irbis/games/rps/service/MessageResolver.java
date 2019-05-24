@@ -19,6 +19,9 @@ public final class MessageResolver {
                     { "start-new-game", "\t1 or r - start new game" },
                     { "display-statistic", "\t2 or j - display gaming statistic" },
                     { "exit-action-state", "\t0 or q - exit" },
+                    { "gaming-statistic", "Gaming statistic" },
+                    { "gaming-statistic-title", "\n| username \t\t| score \t|" },
+                    { "enter-to-return", "Press Enter to return" },
                     { "", "" },
                     { "exit", "Thanks for the game! Please, come back!" }
             }).collect(Collectors.collectingAndThen(
