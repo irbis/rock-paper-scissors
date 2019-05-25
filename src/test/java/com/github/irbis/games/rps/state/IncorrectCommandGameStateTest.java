@@ -2,7 +2,6 @@ package com.github.irbis.games.rps.state;
 
 import com.github.irbis.games.rps.TestConfiguration;
 import com.github.irbis.games.rps.service.MessageResolver;
-import com.github.irbis.games.rps.service.StatisticService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,32 +13,26 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TestConfiguration.class)
-public class ShowStatisticGameStateTest {
+public class IncorrectCommandGameStateTest {
 
     @Autowired private MessageResolver messageResolver;
-    @Autowired private StatisticService statisticService;
     @Autowired private StartGameState startGameState;
-    @Autowired private PlayGameState playGameState;
 
-    private ShowStatisticGameState showStatisticGameState;
+    private IncorrectCommandGameState incorrectCommandGameState;
 
     @Before
     public void setUp() {
-        showStatisticGameState = new ShowStatisticGameState(
-                messageResolver,
-                startGameState,
-                statisticService);
+        incorrectCommandGameState = new IncorrectCommandGameState(messageResolver, startGameState);
     }
 
     @Test
     public void act() {
-        GameState state = showStatisticGameState.act("username");
-
+        GameState state = incorrectCommandGameState.act("");
         assertTrue(state instanceof StartGameState);
     }
 
     @Test
     public void isContinue() {
-        assertTrue(showStatisticGameState.isContinue());
+        assertTrue(incorrectCommandGameState.isContinue());
     }
 }

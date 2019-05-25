@@ -34,16 +34,11 @@ public class ShowStatisticGameState extends GameState {
 
     private void printStatisticLine(AggregatedStatistic s) {
         printlnMessage("gaming-statistic-line",
-                s.getUsername(), Integer.toString(s.getScore()) + "%");
+                s.getUsername(), s.getScore() + "%");
     }
 
     @Override
     public GameState act(String input) {
         return startGameState;
-    }
-
-    @Override
-    public boolean isContinue() {
-        return true;
     }
 }

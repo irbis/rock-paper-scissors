@@ -23,5 +23,7 @@ public abstract class GameState {
 
     public abstract void show();
     public abstract GameState act(String input);
-    public abstract boolean isContinue();
+    public boolean isContinue() {
+        return true;
+    }
 }

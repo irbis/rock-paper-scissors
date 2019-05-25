@@ -3,48 +3,53 @@ package com.github.irbis.games.rps.state;
 import com.github.irbis.games.rps.service.MessageResolver;
 import com.github.irbis.games.rps.service.SessionService;
 import com.github.irbis.games.rps.service.StatisticService;
-import org.springframework.stereotype.Component;
 
-@Component
-public class WelcomeGameState extends GameState {
+public class GameResultState extends GameState {
 
+    private final GameResult gameResult;
     private final StartGameState startGameState;
-    private final ExitGameState exitGameState;
     private final SessionService sessionService;
     private final StatisticService statisticService;
 
-    public WelcomeGameState(
+    public GameResultState(
             MessageResolver messageResolver,
+            GameResult gameResult,
             StartGameState startGameState,
-            ExitGameState exitGameState,
             SessionService sessionService,
             StatisticService statisticService) {
         super(messageResolver);
+        this.gameResult = gameResult;
         this.startGameState = startGameState;
-        this.exitGameState = exitGameState;
         this.sessionService = sessionService;
         this.statisticService = statisticService;
     }
 
     @Override
     public void show() {
-        printlnMessage("welcome");
-        printMessage("login");
+        String username = sessionService.getCurrentSession();
+
+        switch (gameResult) {
+            case WIN:
+                printlnMessage("win");
+                statisticService.win(username);
+                break;
+            case LOOSE:
+                printlnMessage("loose");
+                statisticService.fail(username);
+                break;
+            default:
+                printlnMessage("draw");
+        }
+
+        printlnMessage("enter-to-continue");
     }
 
     @Override
     public GameState act(String input) {
-        if (input.trim().isEmpty()) {
-            return exitGameState;
-        } else {
-            sessionService.createSession(input);
-            statisticService.initStatistic(sessionService.getCurrentSession());
-            return startGameState;
-        }
+        return startGameState;
     }
 
-    @Override
-    public boolean isContinue() {
-        return false;
+    public GameResult getGameResult() {
+        return gameResult;
     }
 }

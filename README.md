@@ -1,4 +1,4 @@
-qs# rock-paper-scissors
+qsas1i# rock-paper-scissors
 
 Console based game.
 

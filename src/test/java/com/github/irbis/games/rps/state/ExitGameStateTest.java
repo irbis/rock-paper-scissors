@@ -1,5 +1,6 @@
 package com.github.irbis.games.rps.state;
 
+import com.github.irbis.games.rps.TestConfiguration;
 import com.github.irbis.games.rps.service.MessageResolver;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MessageResolver.class)
+@SpringBootTest(classes = TestConfiguration.class)
 public class ExitGameStateTest {
 
     @Autowired private MessageResolver messageResolver;

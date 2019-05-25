@@ -2,12 +2,8 @@ package com.github.irbis.games.rps.state;
 
 import com.github.irbis.games.rps.service.MessageResolver;
 import com.github.irbis.games.rps.service.SessionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.Resource;
 
 @Component
 public class StartGameState extends GameState {
@@ -19,6 +15,7 @@ public class StartGameState extends GameState {
         UKNOWN
     }
 
+    private final PlayGameState playGameState;
     private final ExitGameState exitGameState;
     private final ShowStatisticGameState showStatisticGameState;
     private final GameState incorrectCommandGameState;
@@ -26,11 +23,13 @@ public class StartGameState extends GameState {
 
     public StartGameState(
             MessageResolver messageResolver,
+            PlayGameState playGameState,
             ExitGameState exitGameState,
             ShowStatisticGameState showStatisticGameState,
             @Lazy GameState incorrectCommandGameState,
             SessionService sessionService) {
         super(messageResolver);
+        this.playGameState = playGameState;
         this.exitGameState = exitGameState;
         this.showStatisticGameState = showStatisticGameState;
         this.incorrectCommandGameState = incorrectCommandGameState;
@@ -49,7 +48,7 @@ public class StartGameState extends GameState {
     public GameState act(String input) {
         switch (parseInput(input)) {
             case START:
-                return null; // TODO
+                return playGameState;
             case DISPLAY_STATISTIC:
                 return showStatisticGameState;
             case EXIT:
@@ -57,11 +56,6 @@ public class StartGameState extends GameState {
         }
 
         return incorrectCommandGameState;
-    }
-
-    @Override
-    public boolean isContinue() {
-        return true;
     }
 
     private Command parseInput(String input) {

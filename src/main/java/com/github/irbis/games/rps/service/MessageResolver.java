@@ -24,11 +24,20 @@ public final class MessageResolver {
                     { "gaming-statistic-line", "\n %s: %s " },
                     { "enter-to-continue", "\n\nPress Enter to continue" },
                     { "incorrect-command", "Incorrect command! Press Enter to continue!" },
-                    { "", "" },
+                    { "lets-play", "Let's play %s!" },
+                    { "make-choice", "Please make your choice:" },
+                    { "rock-choice", "\t1 or a - rock" },
+                    { "paper-choice", "\t2 or s - paper" },
+                    { "scissor-choice", "\t3 or d - scissor" },
+                    { "you-choice", "You choice is %s\n" },
+                    { "my-choice", "My choice is %s\n" },
+                    { "win", "You win :)" },
+                    { "loose", "Sorry, you loose :(" },
+                    { "draw", "We both are win ;)" },
                     { "exit", "Thanks for the game! Please, come back!" }
             }).collect(Collectors.collectingAndThen(
                     toMap(data -> data[0], data -> data[1]),
-                    Collections::<String, String> unmodifiableMap));
+                    Collections::unmodifiableMap));
 
     public String getMessage(String key) {
         return MESSAGES_MAP.get(key);
