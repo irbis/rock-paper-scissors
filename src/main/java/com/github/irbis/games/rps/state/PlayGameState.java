@@ -45,8 +45,8 @@ public class PlayGameState extends GameState {
         Turn compTurn = computerPlayerService.turn();
         Turn gamerTurn = parseInput(input);
 
-        printlnMessage("you-choice", gamerTurn.toString().toLowerCase());
-        printlnMessage("my-choice", compTurn.toString().toLowerCase());
+        printlnMessage("you-choice", messageResolver.getMessage(gamerTurn.toString().toLowerCase()));
+        printlnMessage("my-choice", messageResolver.getMessage(compTurn.toString().toLowerCase()));
 
         switch(gamerTurn) {
             case ROCK:

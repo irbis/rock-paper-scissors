@@ -35,7 +35,10 @@ public final class MessageResolver {
                     { "win", "You win :)" },
                     { "loose", "Sorry, you loose :(" },
                     { "draw", "We both are win ;)" },
-                    { "exit", "Thanks for the game! Please, come back!" }
+                    { "exit", "Thanks for the game! Please, come back!" },
+                    { "rock", "rock" },
+                    { "paper", "paper" },
+                    { "scissors", "scissors" }
             }).collect(Collectors.collectingAndThen(
                     toMap(data -> data[0], data -> data[1]),
                     Collections::unmodifiableMap));
@@ -63,7 +66,10 @@ public final class MessageResolver {
                     { "win", "Вы выиграли :)" },
                     { "loose", "Извините, вы проиграли :(" },
                     { "draw", "Мы оба выиграли ;)" },
-                    { "exit", "Спасибо за игру! Приходите ещё!" }
+                    { "exit", "Спасибо за игру! Приходите ещё!" },
+                    { "rock", "камень" },
+                    { "paper", "бумага" },
+                    { "scissors", "ножницы" }
             }).collect(Collectors.collectingAndThen(
                     toMap(data -> data[0], data -> data[1]),
                     Collections::unmodifiableMap));
@@ -71,13 +77,12 @@ public final class MessageResolver {
     private final Map<String, String> currentMessagesMap;
 
     public MessageResolver() {
-        Locale currentLocale = Locale.getDefault();
+        String currentLanguage = Locale.getDefault().getLanguage();
+        String ruLanguage = new Locale("ru").getLanguage();
 
-        if (currentLocale.getLanguage().equals(new Locale("ru").getLanguage())) {
-            currentMessagesMap = MESSAGES_MAP_RU;
-        } else {
-            currentMessagesMap = MESSAGES_MAP_EN;
-        }
+        currentMessagesMap = currentLanguage.equals(ruLanguage)
+                ? MESSAGES_MAP_RU
+                : MESSAGES_MAP_EN;
     }
 
     public String getMessage(String key) {
