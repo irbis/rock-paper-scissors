@@ -48,16 +48,19 @@ public class PlayGameState extends GameState {
         printlnMessage("you-choice", messageResolver.getMessage(gamerTurn.toString().toLowerCase()));
         printlnMessage("my-choice", messageResolver.getMessage(compTurn.toString().toLowerCase()));
 
+        if (gamerTurn == Turn.UNKNOWN)
+            return incorrectCommandGameState;
+
+        computerPlayerService.saveGamerTurn(gamerTurn);
+
         switch(gamerTurn) {
             case ROCK:
                 return createGameResultState(checkRock(compTurn));
             case PAPER:
                 return createGameResultState(checkPaper(compTurn));
-            case SCISSOR:
+            default:
                 return createGameResultState(checkScissor(compTurn));
         }
-
-        return incorrectCommandGameState;
     }
 
     private Turn parseInput(String input) {

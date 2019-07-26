@@ -11,11 +11,41 @@ public class PlayGameStateTest {
     protected final String PAPER_KEY = "2";
     protected final String SCISSORS_KEY = "3";
 
-    protected final ComputerPlayerService COMPUTER_TURN_ROCK = () -> Turn.ROCK;
+    protected final ComputerPlayerService COMPUTER_TURN_ROCK = new ComputerPlayerService() {
+        @Override
+        public Turn turn() {
+            return Turn.ROCK;
+        }
 
-    protected final ComputerPlayerService COMPUTER_TURN_PAPER = () -> Turn.PAPER;
+        @Override
+        public void saveGamerTurn(Turn gamerTurn) {
 
-    protected final ComputerPlayerService COMPUTER_TURN_SCISSORS = () -> Turn.SCISSOR;
+        }
+    };
+
+    protected final ComputerPlayerService COMPUTER_TURN_PAPER = new ComputerPlayerService() {
+        @Override
+        public Turn turn() {
+            return Turn.PAPER;
+        }
+
+        @Override
+        public void saveGamerTurn(Turn gamerTurn) {
+
+        }
+    };
+
+    protected final ComputerPlayerService COMPUTER_TURN_SCISSORS = new ComputerPlayerService() {
+        @Override
+        public Turn turn() {
+            return Turn.SCISSOR;
+        }
+
+        @Override
+        public void saveGamerTurn(Turn gamerTurn) {
+
+        }
+    };
 
     @Autowired private MessageResolver messageResolver;
     @Autowired private StartGameState startGameState;
